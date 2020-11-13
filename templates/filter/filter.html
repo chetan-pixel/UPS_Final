@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .inlineinput div {
+        display: inline;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <form id="formm" method="post" action="/filter/?z=">
+            <h1>Filter Data</h1>
+            <hr>
+                <div>
+                    <span class="inlineinput">
+                        <?=z?>
+                        {% csrf_token %}
+                            From:
+
+                        {% if value_from %}
+                            <input type="date" id="from" name="from" min="{{min}}" max="{{max}}" value="{{value_from}}">
+                        {% else %}
+                            <input type="date" id="from" name="from" min="{{min}}" max="{{max}}" value="{{ min }}">
+                        {% endif %}
+                            <br><br>
+                            To:
+                        {% if value_to %}
+                            <input type="date" id="to" name="to" min="{{min}}" max="{{max}}" value="{{ value_to }}">
+                        {% else %}
+                            <input type="date" id="to" name="to" min="{{min}}" max="{{max}}" value="{{ max }}">
+                        {% endif %}
+                    </span>
+                </div>
+                        <br>
+                        <button type="submit">Submit</button>
+            <hr>
+            <a href="export_data/">Export Data</a>
+            <table>
+            <tr>
+                <th>Time</th>
+                <th>Current</th>
+                <th>Temperature</th>
+                <th>Voltage</th>
+                <th>Humidity</th>
+            </tr>
+
+            {%for time,current,temperature,voltage,humidity in comb_lis%}
+            <tr>
+                <td>{{time}}</td>
+                <td>{{current}}</td>
+                <td>{{temperature}}</td>
+                <td>{{voltage}}</td>
+                <td>{{humidity}}</td>
+            </tr>
+            {%endfor%}
+            </table>
+        </form>
+    </center>
+    <script>
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const z = urlParams.get('z')
+                var url = "/filter/?z="+z
+                document.getElementById("formm").action = url;
+    </script>
+</body>
+</html>
