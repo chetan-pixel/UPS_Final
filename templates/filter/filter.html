@@ -35,7 +35,9 @@
                         <br>
                         <button type="submit">Submit</button>
             <hr>
-            <a href="export_data/">Export Data</a>
+            <input type="button" value="Export Data" onclick="myFunction()"/>
+<!--            <button onclick="location.href='{% url 'api' %}'" type="button">-->
+<!--         www.example.com</button>-->
             <table>
             <tr>
                 <th>Time</th>
@@ -63,6 +65,14 @@
                 const z = urlParams.get('z')
                 var url = "/filter/?z="+z
                 document.getElementById("formm").action = url;
+                function myFunction() {
+                var from = document.getElementById("from").value;
+                var to = document.getElementById("to").value;
+                var url = "{% url 'export' %}"+"?f="+from+"&t="+to;
+                console.log(url);
+                window.location.href=url;
+                }
+
     </script>
 </body>
 </html>

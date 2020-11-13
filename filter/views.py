@@ -75,7 +75,7 @@ def filter_btw_dates(request):
             max_time = i.time
         min_date = str(min_time)[0:10]
         max_date = str(max_time)[0:10]
-        query = "SELECT * FROM data_working_data WHERE user='" + uid + "' AND device_no = '" + deviceID + "' ORDER BY id DESC LIMIT 60"
+        query = "SELECT * FROM data_working_data WHERE user='" + uid + "' AND device_no = '" + deviceID + "'"
         time = []
         current = []
         temperature = []
@@ -108,8 +108,8 @@ def numberOfDays(y, m):
 
 
 def export_xls(request):
-    from_date = '2020-11-11'
-    to_date = '2020-11-12'
+    from_date = request.GET.get('f')
+    to_date = request.GET.get('t')
     original_from_date = from_date
     original_to_date = to_date
     # print(from_date)
@@ -160,11 +160,8 @@ def export_xls(request):
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
-
-    # Sheet body, remaining rows
     font_style = xlwt.XFStyle()
     for i in range(len(time)):
-        # ws.write(row_num, col_num, columns[col_num], font_style)
         ws.write(i + 1, 0, time[i], font_style)
         ws.write(i + 1, 1, current[i], font_style)
         ws.write(i + 1, 2, temperature[i], font_style)
