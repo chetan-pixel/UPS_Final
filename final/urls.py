@@ -16,5 +16,5 @@ urlpatterns = [
     url('ajax_update/', ajax_update, name='ajax_update'),
     url('filter/', filter_btw_dates, name='filter'),
     path('export/', export_xls, name='export'),
-
+    path('super_login/', admin_login, name='admin_login'),
 ]
