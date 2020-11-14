@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from data_working.views import *
 from filter.views import *
 from log.views import *
+from export.views import *
 from superadmin.views import *
 
 urlpatterns = [
@@ -14,7 +15,6 @@ urlpatterns = [
     path('dashboard/', TemplateView.as_view(template_name="data_working/dashboard.html"), name="dashboard"),
     url('ajax_update/', ajax_update, name='ajax_update'),
     url('filter/', filter_btw_dates, name='filter'),
-    path('api/', export_xls, name='api'),
     path('export/', export_xls, name='export'),
 
 ]
