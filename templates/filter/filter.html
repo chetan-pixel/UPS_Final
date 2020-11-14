@@ -68,7 +68,7 @@
                 function myFunction() {
                 var from = document.getElementById("from").value;
                 var to = document.getElementById("to").value;
-                var url = "{% url 'export' %}"+"?f="+from+"&t="+to;
+                var url = "{% url 'export' %}"+"?f="+from+"&t="+to+"&z="+z;
                 console.log(url);
                 window.location.href=url;
                 }

@@ -16,4 +16,5 @@ urlpatterns = [
     url('filter/', filter_btw_dates, name='filter'),
     path('api/', export_xls, name='api'),
     path('export/', export_xls, name='export'),
+
 ]
