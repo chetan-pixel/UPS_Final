@@ -7,6 +7,7 @@ from filter.views import *
 from log.views import *
 from export.views import *
 from superadmin.views import *
+from save_latest.views import save_latest_data
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,4 +18,5 @@ urlpatterns = [
     url('filter/', filter_btw_dates, name='filter'),
     path('export/', export_xls, name='export'),
     path('super_login/', admin_login, name='admin_login'),
+    path('save_data/', save_latest_data, name='save_latest'),
 ]
